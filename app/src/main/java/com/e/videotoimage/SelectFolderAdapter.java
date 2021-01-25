@@ -1,5 +1,7 @@
 package com.e.videotoimage;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +13,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class SelectFolderAdapter extends RecyclerView.Adapter<SelectFolderAdapter.ViewHolder> {
-    private ArrayList<Folders> folderLists;
+    private ArrayList<String> folderLists;
+    private ArrayList<VideoFiles> videoFiles;
+    private Context mContext;
+
+    public SelectFolderAdapter(ArrayList<String> folderLists, ArrayList<VideoFiles> videoFiles, Context context) {
+        this.folderLists = folderLists;
+        this.videoFiles = videoFiles;
+        this.mContext = context;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_folder_select,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_folder,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvFolderName.setText(folderLists.get(position).getFolderName());
-        if (folderLists.get(position).getFolderVideo() > 0){
-            holder.tvFolderVideo.setText(folderLists.get(position).getFolderVideo() + " videos");
-        } else {
-            holder.tvFolderVideo.setText( "0 video");
-        }
+        holder.folderName.setText(folderLists.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,SelectVideoActivity.class);
+                intent.putExtra("foldername",folderLists.get(position));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -35,18 +49,11 @@ public class SelectFolderAdapter extends RecyclerView.Adapter<SelectFolderAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvFolderName;
-        private TextView tvFolderVideo;
+        TextView folderName;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFolderName = itemView.findViewById(R.id.tv_folder_name);
-            tvFolderVideo = itemView.findViewById(R.id.tv_number_video);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
+            folderName = itemView.findViewById(R.id.tv_folder_name);
         }
     }
 }
