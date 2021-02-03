@@ -7,6 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPlay"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <TextView
+            android:id="@+id/tv_playvd_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_title_tb_selectfoler"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
@@ -18,12 +34,12 @@
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbarPlay">
 
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"/>
     </FrameLayout>
 

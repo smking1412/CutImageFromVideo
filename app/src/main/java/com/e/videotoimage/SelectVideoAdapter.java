@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.stream.MediaStoreImageThumbLoader;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class SelectVideoAdapter extends RecyclerView.Adapter<SelectVideoAdapter.ViewHolder> {
@@ -47,11 +48,13 @@ public class SelectVideoAdapter extends RecyclerView.Adapter<SelectVideoAdapter.
                 .load(uri)
                 .centerCrop()
                 .into(holder.thumbnail);
+        holder.videoDuration.setText(convertTime(videoList.get(position).getDuration()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentPlayVideo = new Intent(mContext,PlayVideoActivity.class);
-                intentPlayVideo.putExtra("videoname",videoList.get(position).getPath());
+                intentPlayVideo.putExtra("videopath",videoList.get(position).getPath());
+                intentPlayVideo.putExtra("videoname",videoList.get(position).getTittle());
                 mContext.startActivity(intentPlayVideo);
             }
         });
@@ -74,5 +77,32 @@ public class SelectVideoAdapter extends RecyclerView.Adapter<SelectVideoAdapter.
             fileName = itemView.findViewById(R.id.tv_video_name);
             videoDuration = itemView.findViewById(R.id.tv_video_duration);
         }
+    }
+
+    public String convertTime(String milliseconds) {
+        String finalTimerString = "";
+        String secondsString = "";
+
+        long time = Long.parseLong(milliseconds);
+        // Convert total duration into time
+        int hours = (int) (time / (1000 * 60 * 60));
+        int minutes = (int) (time % (1000 * 60 * 60)) / (1000 * 60);
+        int seconds = (int) ((time % (1000 * 60 * 60)) % (1000 * 60) / 1000);
+        // Add hours if there
+        if (hours > 0) {
+            finalTimerString = hours + ":";
+        }
+
+        // Prepending 0 to seconds if it is one digit
+        if (seconds < 10) {
+            secondsString = "0" + seconds;
+        } else {
+            secondsString = "" + seconds;
+        }
+
+        finalTimerString = finalTimerString + minutes + ":" + secondsString;
+
+        // return timer string
+        return finalTimerString;
     }
 }
