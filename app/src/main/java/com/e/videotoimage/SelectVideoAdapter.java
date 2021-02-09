@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.stream.MediaStoreImageThumbLoader;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -52,9 +53,10 @@ public class SelectVideoAdapter extends RecyclerView.Adapter<SelectVideoAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentPlayVideo = new Intent(mContext,PlayVideoActivity.class);
-                intentPlayVideo.putExtra("videopath",videoList.get(position).getPath());
-                intentPlayVideo.putExtra("videoname",videoList.get(position).getTittle());
+               Intent intentPlayVideo = new Intent(mContext,PlayVideoActivity.class);
+//                intentPlayVideo.putExtra("videopath",videoList.get(position).getPath());
+//                intentPlayVideo.putExtra("videoname",videoList.get(position).getTittle());
+                intentPlayVideo.putExtra("video",videoList.get(position));
                 mContext.startActivity(intentPlayVideo);
             }
         });

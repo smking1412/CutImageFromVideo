@@ -1,6 +1,8 @@
 package com.e.videotoimage;
 
-public class VideoFiles {
+import java.io.Serializable;
+
+public class VideoFiles implements Serializable {
     private String id;
     private String path;
     private String tittle;

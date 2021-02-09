@@ -8,10 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +28,7 @@ public class SelectFolderActivity extends AppCompatActivity {
     private SelectVideoAdapter mSelectVideoAdapter;
     private SelectFolderAdapter mSelectFolderAdapter;
     private static final int REQUEST_CODE_PERMISSION = 10;
+    private Toolbar toolbar;
 
 
     @Override
@@ -33,6 +36,16 @@ public class SelectFolderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_folder);
         initView();
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         videoFiles = getAllVideo(this);
         if (mFolderLists != null && mFolderLists.size() > 0 && videoFiles != null){
             mSelectFolderAdapter = new SelectFolderAdapter(mFolderLists,videoFiles,this);
@@ -43,6 +56,7 @@ public class SelectFolderActivity extends AppCompatActivity {
 
     private void initView() {
         mRecyclerViewFolder = findViewById(R.id.recycler_foler);
+        toolbar = findViewById(R.id.toolbarfolder);
     }
 
     public ArrayList<VideoFiles> getAllVideo(Context context) {

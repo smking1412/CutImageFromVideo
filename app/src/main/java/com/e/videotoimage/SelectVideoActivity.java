@@ -8,10 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,12 +26,24 @@ public class SelectVideoActivity extends AppCompatActivity {
     private SelectVideoAdapter mSelectVideoAdapter;
     private String folderName;
     private ArrayList<VideoFiles> videoFilesList = new ArrayList<>();
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_video);
+
         mRecyclerViewVideo = findViewById(R.id.recycler_video);
+        toolbar = findViewById(R.id.toolbarvideo);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         folderName = getIntent().getStringExtra("foldername");
         if (folderName != null) {
             videoFilesList = getAllVideo(this, folderName);

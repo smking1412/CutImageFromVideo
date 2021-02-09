@@ -15,4 +15,5 @@
     <string name="tv_email">Email</string>
     <string name="tv_email_link">minhtan98.vn@gmail.com</string>
     <string name="tv_title_tb_selectfoler">Video Folder</string>
+    <string name="tv_title_tb_selectvideo">Video Name</string>
 </resources>

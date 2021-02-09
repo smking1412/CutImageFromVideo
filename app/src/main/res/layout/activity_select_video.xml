@@ -9,12 +9,14 @@
         android:id="@+id/toolbarvideo"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:background="@drawable/bg_toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_title_tb_selectfoler"
+            android:layout_marginRight="64dp"
             android:gravity="center"
             android:textSize="20sp"
             android:textColor="@color/black"/>

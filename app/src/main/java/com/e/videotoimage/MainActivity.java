@@ -6,12 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -91,18 +93,22 @@ public class MainActivity extends AppCompatActivity {
         btnShowInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder showInfoDialog = new AlertDialog.Builder(MainActivity.this);
-
+                AlertDialog.Builder builerDialog = new AlertDialog.Builder(MainActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 RelativeLayout dialogLayout = (RelativeLayout) inflater.inflate(R.layout.dialog_about_us, null);
-                showInfoDialog.setView(dialogLayout);
-                showInfoDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                builerDialog.setView(dialogLayout);
+                builerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
-                showInfoDialog.show();
+
+                AlertDialog dialog = builerDialog.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#000000"));
+                positiveButton.setTextSize(20);
             }
         });
     }
