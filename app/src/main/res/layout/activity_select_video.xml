@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectVideoActivity">
+    tools:context=".Activities.SelectVideoActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarvideo"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.e.videotoimage;
+package com.e.videotoimage.Models;
 
 import java.io.Serializable;
 

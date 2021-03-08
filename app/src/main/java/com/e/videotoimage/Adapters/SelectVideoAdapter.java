@@ -1,28 +1,23 @@
-package com.e.videotoimage;
+package com.e.videotoimage.Adapters;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.model.stream.MediaStoreImageThumbLoader;
+import com.e.videotoimage.Activities.PlayVideoActivity;
+import com.e.videotoimage.Models.VideoFiles;
+import com.e.videotoimage.R;
 
 import java.io.File;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class SelectVideoAdapter extends RecyclerView.Adapter<SelectVideoAdapter.ViewHolder> {
@@ -53,7 +48,7 @@ public class SelectVideoAdapter extends RecyclerView.Adapter<SelectVideoAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intentPlayVideo = new Intent(mContext,PlayVideoActivity.class);
+               Intent intentPlayVideo = new Intent(mContext, PlayVideoActivity.class);
 //                intentPlayVideo.putExtra("videopath",videoList.get(position).getPath());
 //                intentPlayVideo.putExtra("videoname",videoList.get(position).getTittle());
                 intentPlayVideo.putExtra("video",videoList.get(position));

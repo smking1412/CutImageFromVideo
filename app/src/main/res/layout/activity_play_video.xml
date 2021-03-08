@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPlay"
@@ -67,28 +67,29 @@
             android:id="@+id/videoView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"/>
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:gravity="center_vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frameLayout"
         app:layout_constraintBottom_toTopOf="@id/group_bottom_btn">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_capture_img"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="90dp"
             android:layout_margin="10dp"/>
 
         <LinearLayout
             android:id="@+id/linear_settime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:visibility="gone"
+            android:layout_margin="10dp"
             android:gravity="center_horizontal">
 
             <ImageView
@@ -126,7 +127,7 @@
 
 
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/group_bottom_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -139,37 +140,45 @@
             android:id="@+id/btn_quick_capture"
             android:layout_width="wrap_content"
             android:layout_height="64dp"
-            android:layout_alignParentLeft="true"
             android:background="@drawable/bg_btn_selected"
-            android:padding="15dp"
+            android:padding="5dp"
             android:text="Quick Capture"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_capture_video"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:id="@+id/btn_capture_video"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
             android:background="@drawable/bg_btn_capturevideo"
             android:padding="10dp"
-            android:src="@drawable/ic_camera" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintLeft_toRightOf="@id/btn_quick_capture"
+            app:layout_constraintRight_toLeftOf="@id/btn_time_capture"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/btn_time_capture"
             android:layout_width="wrap_content"
             android:layout_height="64dp"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="end"
+            android:gravity="center"
             android:background="@drawable/bg_btn_unselect"
-            android:padding="15dp"
+            android:padding="5dp"
             android:text="Time Capture"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/btn_capture_video"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

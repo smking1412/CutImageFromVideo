@@ -14,10 +14,10 @@
         android:windowSoftInputMode="adjustResize"
         android:theme="@style/Theme.VideoToImage"
         android:requestLegacyExternalStorage="true">
-        <activity android:name=".PlayVideoActivity"></activity>
-        <activity android:name=".SelectVideoActivity" />
-        <activity android:name=".SelectFolderActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.PlayVideoActivity"></activity>
+        <activity android:name=".Activities.SelectVideoActivity" />
+        <activity android:name=".Activities.SelectFolderActivity" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

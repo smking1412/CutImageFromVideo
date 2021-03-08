@@ -1,4 +1,4 @@
-package com.e.videotoimage;
+package com.e.videotoimage.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.e.videotoimage.Activities.SelectVideoActivity;
+import com.e.videotoimage.Models.VideoFiles;
+import com.e.videotoimage.R;
 
 import java.util.ArrayList;
 
@@ -36,7 +40,7 @@ public class SelectFolderAdapter extends RecyclerView.Adapter<SelectFolderAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext,SelectVideoActivity.class);
+                Intent intent = new Intent(mContext, SelectVideoActivity.class);
                 intent.putExtra("foldername",folderLists.get(position));
                 mContext.startActivity(intent);
             }
